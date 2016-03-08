@@ -9,7 +9,7 @@
         </a>
         
         {% for folder in folders %}
-            <a class="folder" href="{% url 'list' folder.slug %}">
+            <a class="folder" href="{% if folder.slug %}{% url 'list' folder.slug %}{% endif %}">
                 
                 {% if folder.icon %}
                     {% thumbnail folder.icon 150x150 crop %}
