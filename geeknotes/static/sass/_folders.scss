@@ -1,0 +1,44 @@
+.folder {
+    @extend .panel;
+    @extend .panel-default;
+    @extend .panel-body;
+    
+    text-decoration: none;
+    cursor: pointer;
+    
+    display: inline-block;
+    width: 200px;
+    text-align: center; 
+    margin-right: 10px;
+    
+    opacity: 0.5;
+    &:hover {opacity: 1;}
+    @include transition-property(opacity, color);
+    @include transition-duration(0.3s);
+    
+    i.fa {
+        font-size: 5em; 
+        display: block; 
+        width: 150px; 
+        height: 150px; 
+        margin: 0 auto 10px !important;
+        background: $navbar-default-bg;
+        padding-top: 40px;
+    }
+    p {margin: 0;}
+}
+
+#folder_create_modal, #notes-move-modal {
+    .modal-body div.form-horizontal {
+        div.form-group {
+            label { 
+                @extend .col-sm-2; 
+                @extend .control-label; 
+            }
+            input, select { 
+                @extend .form-control; 
+            }
+            div.input { @extend .col-sm-10; }
+        }
+    }
+}

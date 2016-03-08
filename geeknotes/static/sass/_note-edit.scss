@@ -1,0 +1,24 @@
+// Edition
+&.note-edit {
+    .navbar-top { margin: 0;} 
+    
+    #note { 
+        overflow: auto; 
+        border-left: 5px solid $navbar-default-border;
+        
+    }
+    .edit {
+        padding: 0;
+        
+        #editor {border-radius : 0; border: none; margin: 0;}
+        .raw-text {
+            font-family: monospace;
+        }
+    }
+    
+    #meta-data-modal {
+        select {
+            @extend .form-control;
+        }
+    } 
+} 

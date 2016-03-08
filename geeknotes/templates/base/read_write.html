@@ -1,0 +1,104 @@
+<div class="navbar-left">
+    
+    <!--#################################################################
+    
+                Action buttons
+    
+    #################################################################-->
+    
+    {% if note %}
+        <div class="btn-group navbar-btn" role="group" aria-label="...">
+            <a href="{% url 'read' slug=note.slug folder_slug=folder.slug %}" 
+                class="btn btn-default {% if read_write_status == 'read' %}active{% endif %}"
+                title="Lire" data-toggle="tooltip" data-placement="bottom">
+                
+                <i class="fa fa-eye"></i>
+            </a>
+            <a href="{% url 'edit' slug=note.slug folder_slug=folder.slug %}" 
+                class="btn btn-default {% if read_write_status == 'edit' %}active{% endif %}"
+                title="Editer" data-toggle="tooltip" data-placement="bottom">
+                <i class="fa fa-pencil"></i>
+            </a>
+        </div>
+    {% endif %}
+        
+    <div class="btn-group navbar-btn" role="group" aria-label="...">
+        {% if read_write_status == 'edit' %}
+        
+            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#meta-data-modal">
+                <span data-toggle="tooltip" title="Méta données" data-placement="bottom">
+                    <i class="fa fa-sliders"></i>
+                </span>
+            </a>
+            
+            <a href="#" class="btn btn-default"
+                title="Pièces jointes" data-toggle="tooltip" data-placement="bottom">
+                
+                <i class="fa fa-paperclip"></i>
+            </a>
+            <a href="#" id="toggle-preview" class="btn btn-default"
+                title="Afficher / Cacher la prévisualisation" data-toggle="tooltip" data-placement="bottom">
+                
+                <i class="fa fa-columns"></i>
+            </a>
+            <a href="#" id="save-note" class="btn btn-success" 
+                title="Sauvegarder" data-toggle="tooltip" data-placement="bottom">
+                
+                <i class="fa fa-save"></i>
+            </a>
+        {% endif %}
+        
+        {% if note and note.slug %}
+        <a href="{% url 'delete' slug=note.slug folder_slug=folder.slug %}" 
+            data-confirm='Êtes-vous sûr de vouloir supprimer la note <em>{{ note.title }}</em> ?' 
+            title="Supprimer" data-toggle="tooltip" data-placement="bottom"
+            class="btn btn-danger">
+            <i class="fa fa-trash"></i>
+        </a>
+        {% endif %}
+    </div>
+
+    <!--#################################################################
+    
+                Navigation buttons
+    
+    #################################################################-->
+    <div class="btn-group navbar-btn" role="group" aria-label="...">
+        {% if previous_note %}
+        <a href="{% url read_write_status slug=previous_note.0.slug folder_slug=folder.slug %}" 
+            class="btn btn-default" title="Page précédente&nbsp;: {{ previous_note.0.title}}" 
+            data-toggle="tooltip" data-placement="bottom">
+            
+            <i class="fa fa-angle-left"></i>
+        </a>
+        {% else %}
+        <a href="" class="btn btn-default disabled"
+            title="Page précédente" data-toggle="tooltip" data-placement="bottom">
+            
+            <i class="fa fa-angle-left"></i>
+        </a>
+        {% endif %} {% if next_note %}
+        <a href="{% url read_write_status slug=next_note.0.slug folder_slug=folder.slug %}" 
+            class="btn btn-default" title="Page suivante&nbsp;: {{ next_note.0.title}}" 
+            data-toggle="tooltip" data-placement="bottom">
+            
+            <i class="fa fa-angle-right"></i>
+        </a>
+        {% else %}
+        <a href="" class="btn btn-default disabled"
+            title="Page suivante" data-toggle="tooltip" data-placement="bottom">
+            
+            <i class="fa fa-angle-right"></i>
+        </a>
+        {% endif %}
+    </div>
+    
+    
+    <!--#################################################################
+    
+                Page title
+    
+    #################################################################-->
+    {% include "base/fil-ariane.html" %}
+    
+</div>

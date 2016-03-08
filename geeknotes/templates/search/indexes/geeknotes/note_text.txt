@@ -1,0 +1,5 @@
+{% for tag in object.tags.all %}
+    <span class="label label-default">{{ tag.name }}</span>  
+{% endfor %}
+{{ object.content }}
+{{ object.title }}

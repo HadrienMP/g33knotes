@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ note.title }}{% endblock %}
+{% block container-type %}container-fluid{% endblock %}
+
+{% block read-write %}
+{% with 'read' as read_write_status %}
+    {% include 'base/read_write.html' %}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 col-md-4 col-md-push-8">       
+        <div class="panel panel-default toc">
+            <div class="panel-heading">
+                Sommaire
+            </div>
+            <div id="toc" class="panel-content">
+                
+            </div>
+        </div>
+    </div>
+    <div id="note" class="col-xs-12 col-md-8 col-md-pull-4">
+        {{ note.html|safe }}
+    </div>
+</div>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/default.min.css">
+{% endblock %}
+
+{% block js %}
+<script src="//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/vendor/toc.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript">
+$('#toc').toc({
+    //'selectors': 'h1,h2,h3', //elements to use as headings
+    'container': '#note', //element to find all selectors in
+    'smoothScrolling': true, //enable or disable smooth scrolling on click
+    'prefix': 'toc', //prefix for anchor tags and class names
+    'onHighlight': function(el) {}, //called when a new section is highlighted 
+    'highlightOnScroll': true, //add class to heading that is currently in focus
+    'highlightOffset': 100, //offset to trigger the next headline
+    'anchorName': function(i, heading, prefix) { //custom function for anchor name
+        return prefix+i;
+    },
+    'headerText': function(i, heading, $heading) { //custom function building the header-item text
+        return $heading.text();
+    },
+    // 'itemClass': function(i, heading, $heading, prefix) { // custom function for item class
+    //   return $heading[0].tagName.toLowerCase();
+    // },
+    listType: '<div class="list-group no-border"/>',
+    listElementPattern: '<a href="{link_value}" class="list-group-item">{link_text}</a>',
+});
+</script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/read.js"></script>
+{% endblock %}

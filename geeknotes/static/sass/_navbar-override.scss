@@ -1,0 +1,30 @@
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 0;
+}
+.navbar {
+    border-radius: 0;
+    
+    h1 {margin: 0;}
+    &.easy-sidebar .navbar-brand {font-size: 1.6em;}
+    &.navbar-top {
+        border-left: 0;
+        .navbar-form.navbar-right {padding-right: 0;}
+        .navbar-brand {
+            padding-right: 40px;
+        }
+    }
+    
+    i.fa {margin-right: 0 !important;}
+    
+    .fil-ariane {
+        background: none;
+        
+        a, span {
+            padding: 0 5px;
+        }
+    }
+}
+.navbar-brand {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}

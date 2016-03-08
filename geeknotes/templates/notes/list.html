@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load taggit_extras geeknotes_tags %}
+
+
+{% block read-write %}
+<div class="navbar-left">
+    <div class="btn-group navbar-btn" role="group">
+         <a href="{% url 'create' folder.slug %}" class="btn btn-default" 
+            title="Ajouter une note" data-toggle="tooltip" data-placement="bottom">
+            <i class="fa  fa-plus "></i>
+        </a>
+         <a href="#" id="check-all" class="btn btn-default" 
+            title="Cocher tout" data-toggle="tooltip" data-placement="bottom">
+            <i class="fa  fa-check "></i>
+        </a>
+         <button type="button" id="move-notes" class="btn btn-default disabled" 
+            title="Déplacer vers le dossier" data-toggle="tooltip" data-placement="bottom">
+            <i class="fa fa-folder-open-o "></i>
+        </button>
+    </div>
+    
+    {% include "base/fil-ariane.html" %}
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        {% if notes %}
+            <div class="timeline animated">
+                {% for note in notes %}
+                    <div class="timeline-row">
+                        <div class="timeline-time">
+                            <small>{{ note.create_date | date:"D. H\hi" }}</small>{{ note.create_date | date:"d/m/Y" }}
+                        </div>
+                        <div class="timeline-icon">
+                            <div class="select" style="background: {{ note.create_date | date_to_color }}">
+                                <i class="fa fa-file-o"></i>
+                            </div>
+                        </div>
+                        <div class="panel panel-default timeline-content">
+                            <div class="panel-body">
+                                <h2 class="pull-left">
+                                    <a href="{% url 'read' folder.slug note.slug %}">{{ note.title }}</a>
+                                </h2>
+                                <p class="pull-right">
+                    			    {% for tag in note.tags.all %}
+                    			        <span class="label label-default">{{ tag.name }}</span>  
+                    			    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucune note pour l'instant</p>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {% if tags %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Tags
+                    {% if request.GET.tag %}
+                        <a href="{% url 'list' folder.slug %}" 
+                            class="btn btn-default btn-xs pull-right"
+                            title="Réinitialiser le filtrage par tag" 
+                            data-toggle="tooltip" data-placement="bottom">
+                            <i class="fa fa-times"></i> {{ request.GET.tag }}
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="panel-body tags">
+                        {% tagcloud_qs tags as tags2 %}
+                        {% for tag in tags2 %}
+                            <a href="{% url 'list' folder.slug %}?tag={{ tag.slug }}"><font size={{tag.weight|floatformat:0}}>{{ tag }}</font></a>
+                        {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+{% include "notes/_notes-move-form.html" %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/timeline.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/notes/list.js"></script>
+{% endblock %}

@@ -1,0 +1,25 @@
+.panel.toc.affix {
+    top: 20px;
+}
+$base-indent: 15px;
+.toc-h1 {font-size: 1.3em;}
+.toc-h2 {text-indent: $base-indent;font-size: 1.2em;}
+.toc-h3 {text-indent: 2*$base-indent;}
+.toc-h4 {text-indent: 3*$base-indent;}
+.toc-h5 {text-indent: 4*$base-indent;}
+.toc-h6 {text-indent: 5*$base-indent;}
+.list-group.no-border {
+    margin: 0;
+    
+    .list-group-item {
+        border-radius: 0; 
+        border-left: 0;
+        border-right: 0;
+        
+        &:first-child { border-top: 0;}
+        &:last-child {
+            border-bottom-left-radius: $border-radius-base;
+            border-bottom-right-radius: $border-radius-base;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<p class="navbar-text pull-right fil-ariane">
+    <a href="{% url 'folders_list' %}">Dossiers</a> /
+    
+    {% if folder and not note %}
+        <span>{{ folder.name }}</span>
+    {% elif folder and note %}
+        <a href="{% url 'list' folder.slug %}">{{ folder.name }}</a> /
+        <span>{{ note.title }}</span>
+    {% endif %}
+    
+</p>

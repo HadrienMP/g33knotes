@@ -1,0 +1,10 @@
+form.login {
+    @extend .form-horizontal;
+    label { @extend .control-label; @extend .col-sm-4; }
+    .input-wrapper {
+        @extend .col-sm-8;
+        input { 
+            @extend .form-control;
+        }
+    }
+}

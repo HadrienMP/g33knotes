@@ -1,0 +1,48 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/css3";
+@import "bootstrap-compass";
+@import "lib/bootstrap-variables";
+@import "bootstrap";
+@import "lib/slide-menu";
+
+#geeknotes {
+    
+    @import "login-form";
+    @import "navbar-override";
+    @import "folders";
+    @import "note-list";
+    @import "toc";
+    @import "note-view";
+    @import "note-edit";
+    
+    // Styles génériques
+    h2 {
+        color: $gray;
+        font-size: 1.3em;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    } 
+    i.fa {
+        margin-left: 5px; 
+        &:first-child {
+            margin-left: 0; 
+            margin-right: 5px;
+        }
+    }
+    .easy-sidebar-toggle i.fa {margin: 0;}
+    
+    // Modification du formulaire pour taggit
+    ul.as-selections {
+        padding: 0;
+        li.as-original {
+            padding-top: 10px; display: block; float: none; clear: both;
+            input {
+                height: auto !important;
+            }
+        }
+    }
+}

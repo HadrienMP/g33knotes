@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <a href="{% url 'folders_create' %}" id="create" class="folder">
+            <i class="fa fa-plus"></i>
+            <p><strong>Nouveau</strong></p>
+        </a>
+        
+        {% for folder in folders %}
+            <a class="folder" href="{% url 'list' folder.slug %}">
+                
+                {% if folder.icon %}
+                    {% thumbnail folder.icon 150x150 crop %}
+                {% else %}
+                    <i class="fa {{ folder.fa |default:'fa-folder-o' }}"></i>
+                {% endif %}
+                
+                <p><strong>{{ folder.name }}</strong> - {{ folder.notes.all | length }} Notes</p>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade" id="folder_create_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="{% url 'folders_create' %}">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder-o"></i>Nouveau Dossier</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Filled by javascript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Fermer</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>Créer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ STATIC_URL }}/js/folders.js"></script>
+{% endblock %}

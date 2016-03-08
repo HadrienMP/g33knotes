@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block search-form %}
+<input type="text" 
+    class="form-control" 
+    id="{{ form.q.id_for_label }}" 
+    name="{{ form.q.html_name }}"
+    placeholder="Recherche"
+    value="{% if form.q.value %}{{ form.q.value }}{% endif %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <form method="get" action=".">
+            {% if query %}
+    
+                {% if page.has_previous or page.has_next %}
+                    <div>
+                        {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                        |
+                        {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                    </div>
+                {% endif %}
+            {% else %}
+                {# Show some example queries to run, maybe query syntax, something else? #}
+            {% endif %}
+            
+            {% if page.object_list %}
+                <div class="timeline animated">
+                    {% for result in page.object_list %}
+                        <div class="timeline-row">
+                            <div class="timeline-time">
+                                <small>{{ result.object.create_date | date:"D. H\hi" }}</small>{{ result.object.create_date | date:"d/m/Y" }}
+                            </div>
+                            <div class="timeline-icon">
+                                <div class="bg-primary">
+                                    <i class="fa fa-file-o"></i>
+                                </div>
+                            </div>
+                            <div class="panel panel-default timeline-content">
+                                <div class="panel-body">
+                                    <h2 class="pull-left">
+                                        <a href="{% url 'read' result.object.slug %}">{{ result.object.title }}</a>
+                                    </h2>
+                                    <p class="pull-right">
+                        			    {% for tag in result.object.tags.all %}
+                        			        <span class="label label-default">{{ tag.name }}</span>  
+                        			    {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/timeline.js"></script>
+{% endblock %}

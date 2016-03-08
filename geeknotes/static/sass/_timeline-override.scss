@@ -1,0 +1,42 @@
+.timeline {
+    .timeline-row {
+        
+        .timeline-icon {
+             top: 6px;
+             i.fa { margin-right: -2px;}
+             
+             &:hover {
+                 cursor: pointer;
+                 
+                 .select { background: grey !important; }
+                 i.fa:before {
+                     content: "\F00C";
+                 }
+             }
+        }
+        .timeline-time {
+             top: 10px;
+             small {
+                 color: $gray;
+                 letter-spacing: 4px;
+             }
+             letter-spacing: 2px;
+        }
+        .timeline-content::after {
+            top: 24px;
+        }
+        .timeline-content h2 {
+            @extend h2;
+        }
+        
+        
+        &.selected {
+            .timeline-icon {
+                @extend .timeline-icon:hover;
+            }
+            .timeline-content {
+                background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/contemporary_china.png");
+            }
+        }
+    }
+}
