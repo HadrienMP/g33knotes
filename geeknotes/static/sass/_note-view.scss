@@ -25,7 +25,7 @@
         color: $link-color;
     }
     h4 {counter-reset: h5c; counter-increment: h4c; font-size: 1.6em;}
-    h5 {counter-increment: h5c; font-size: 1.3em;}
+    h5 {counter-increment: h5c; font-size: 1.3em;} 
     
     h1:before {content: counter(h1c, upper-roman) ". "; font-size: 0.9em;}
     h2:before {content: counter(h1c, upper-roman) "." counter(h2c, upper-alpha) ". "; font-size: 0.9em;}

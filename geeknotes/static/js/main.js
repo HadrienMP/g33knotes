@@ -28,4 +28,16 @@ $(function() {
     return false;
   });
 
+  setInterval(function(){ 
+    $(".alert-box .alert").each(function() {
+      if (!$(this).hasClass("timeout-on")) {
+        $alert = $(this);
+        setTimeout(function(){ 
+         $alert.alert('close');
+        }, 10000);
+        $(this).addClass("timeout-on");
+      }
+    });
+  }, 2000);
+
 });
