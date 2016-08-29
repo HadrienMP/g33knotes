@@ -373,8 +373,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url(/fonts/bootstrap/glyphicons-halflings-regular.eot?1434808037);
-  src: url(/fonts/bootstrap/glyphicons-halflings-regular.eot?&1434808037#iefix) format("embedded-opentype"), url(/fonts/bootstrap/glyphicons-halflings-regular.woff2?1434808037) format("woff2"), url(/fonts/bootstrap/glyphicons-halflings-regular.woff?1434808037) format("woff"), url(/fonts/bootstrap/glyphicons-halflings-regular.ttf?1434808037) format("truetype"), url(/fonts/bootstrap/glyphicons-halflings-regular.svg?1434808037#glyphicons_halflingsregular) format("svg");
+  src: url(/fonts/bootstrap/glyphicons-halflings-regular.eot?1457474135);
+  src: url(/fonts/bootstrap/glyphicons-halflings-regular.eot?&1457474135#iefix) format("embedded-opentype"), url(/fonts/bootstrap/glyphicons-halflings-regular.woff2?1457474135) format("woff2"), url(/fonts/bootstrap/glyphicons-halflings-regular.woff?1457474135) format("woff"), url(/fonts/bootstrap/glyphicons-halflings-regular.ttf?1457474135) format("truetype"), url(/fonts/bootstrap/glyphicons-halflings-regular.svg?1457474135#glyphicons_halflingsregular) format("svg");
 }
 /* line 24, ../../../../../../usr/local/rvm/gems/ruby-2.1.5@rails4/gems/bootstrap-sass-3.3.5/assets/stylesheets/bootstrap/_glyphicons.scss */
 .glyphicon {
@@ -9719,47 +9719,71 @@ body.toggled {
 }
 /* line 2, ../sass/_note-view.scss */
 #geeknotes #note {
-  counter-reset: h1c h1;
-  counter-reset-counter-reset: h2c;
+  counter-reset: h1c;
 }
-/* line 5, ../sass/_note-view.scss */
-#geeknotes #note h2 {
-  counter-reset: h3c;
-}
-/* line 6, ../sass/_note-view.scss */
-#geeknotes #note h3 {
-  counter-reset: h4c;
-}
-/* line 7, ../sass/_note-view.scss */
-#geeknotes #note h4 {
-  counter-reset: h5c;
-}
-/* line 9, ../sass/_note-view.scss */
-#geeknotes #note h1:before {
+/* line 4, ../sass/_note-view.scss */
+#geeknotes #note h1 {
+  counter-reset: h2c;
   counter-increment: h1c;
-  content: counter(h1c) ". ";
-}
-/* line 10, ../sass/_note-view.scss */
-#geeknotes #note h2:before {
-  counter-increment: h2c;
-  content: counter(h1c) "." counter(h2c) ". ";
-}
-/* line 11, ../sass/_note-view.scss */
-#geeknotes #note h3:before {
-  counter-increment: h3c;
-  content: counter(h1c) "." counter(h2c) "." counter(h3c) ". ";
-}
-/* line 12, ../sass/_note-view.scss */
-#geeknotes #note h4:before {
-  counter-increment: h4c;
-  content: counter(h1c) "." counter(h2c) "." counter(h3c) "." counter(h4c) ". ";
+  border: 1px solid #337ab7;
+  border-radius: 0 10px 0 10px;
+  padding: 4px 10px;
+  color: #337ab7;
+  text-transform: uppercase;
 }
 /* line 13, ../sass/_note-view.scss */
-#geeknotes #note h5:before {
-  counter-increment: h5c;
-  content: counter(h1c) "." counter(h2c) "." counter(h3c) "." counter(h4c) "." counter(h5c) ". ";
+#geeknotes #note h2 {
+  counter-reset: h3c;
+  counter-increment: h2c;
+  border-radius: 0 10px 0 10px;
+  background: #337ab7;
+  color: #fff;
+  padding: 4px 10px;
 }
-/* line 15, ../sass/_note-view.scss */
+/* line 21, ../sass/_note-view.scss */
+#geeknotes #note h3 {
+  counter-reset: h4c;
+  counter-increment: h3c;
+  font-size: 2em;
+  color: #337ab7;
+}
+/* line 27, ../sass/_note-view.scss */
+#geeknotes #note h4 {
+  counter-reset: h5c;
+  counter-increment: h4c;
+  font-size: 1.6em;
+}
+/* line 28, ../sass/_note-view.scss */
+#geeknotes #note h5 {
+  counter-increment: h5c;
+  font-size: 1.3em;
+}
+/* line 30, ../sass/_note-view.scss */
+#geeknotes #note h1:before {
+  content: counter(h1c,upper-roman) ". ";
+  font-size: 0.9em;
+}
+/* line 31, ../sass/_note-view.scss */
+#geeknotes #note h2:before {
+  content: counter(h1c,upper-roman) "." counter(h2c,upper-alpha) ". ";
+  font-size: 0.9em;
+}
+/* line 32, ../sass/_note-view.scss */
+#geeknotes #note h3:before {
+  content: counter(h1c,upper-roman) "." counter(h2c,upper-alpha) "." counter(h3c) ". ";
+  font-size: 0.9em;
+}
+/* line 33, ../sass/_note-view.scss */
+#geeknotes #note h4:before {
+  content: counter(h1c,upper-roman) "." counter(h2c,upper-alpha) "." counter(h3c) "." counter(h4c,lower-alpha) ". ";
+  font-size: 0.9em;
+}
+/* line 34, ../sass/_note-view.scss */
+#geeknotes #note h5:before {
+  content: counter(h1c,upper-roman) "." counter(h2c,upper-alpha) "." counter(h3c) "." counter(h4c,lower-alpha) "." counter(h5c,lower-roman) ". ";
+  font-size: 0.9em;
+}
+/* line 36, ../sass/_note-view.scss */
 #geeknotes #note h1.nocount:before,
 #geeknotes #note h2.nocount:before,
 #geeknotes #note h3.nocount:before,
@@ -9768,24 +9792,23 @@ body.toggled {
   content: "";
   counter-increment: none;
 }
-/* line 21, ../sass/_note-view.scss */
+/* line 42, ../sass/_note-view.scss */
 #geeknotes #note h2 {
   text-transform: inherit;
   font-size: 30px;
   letter-spacing: inherit;
-  color: inherit;
 }
-/* line 31, ../sass/_note-view.scss */
+/* line 51, ../sass/_note-view.scss */
 #geeknotes #note .fa {
   margin-right: 0;
 }
-/* line 34, ../sass/_note-view.scss */
+/* line 54, ../sass/_note-view.scss */
 #geeknotes #note .fa.fa-check-square-o, #geeknotes #note .fa.fa-square-o, #geeknotes #note .fa.fa-share-square-o, #geeknotes #note .fa.fa-exclamation-triangle {
   font-size: 1.2em;
   position: relative;
   top: 2px;
 }
-/* line 39, ../sass/_note-view.scss */
+/* line 59, ../sass/_note-view.scss */
 #geeknotes #note .fa.fa-exclamation-triangle {
   color: red;
   font-size: 1.2em;

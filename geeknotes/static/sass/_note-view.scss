@@ -1,16 +1,37 @@
 // Note
 #note {
-    counter-reset: h1c
-    h1 {counter-reset: h2c}
-    h2 {counter-reset: h3c}
-    h3 {counter-reset: h4c}
-    h4 {counter-reset: h5c}
+    counter-reset: h1c;
+    h1 {
+        counter-reset: h2c; 
+        counter-increment: h1c; 
+        border: 1px solid $link-color; 
+        border-radius: 0 10px 0 10px;
+        padding: 4px 10px;
+        color: $link-color;
+        text-transform: uppercase;
+    }
+    h2 {
+        counter-reset: h3c; 
+        counter-increment: h2c;
+        border-radius: 0 10px 0 10px;
+        background: $link-color;
+        color: #fff;
+        padding: 4px 10px;
+    }
+    h3 {
+        counter-reset: h4c; 
+        counter-increment: h3c; 
+        font-size: 2em;
+        color: $link-color;
+    }
+    h4 {counter-reset: h5c; counter-increment: h4c; font-size: 1.6em;}
+    h5 {counter-increment: h5c; font-size: 1.3em;}
     
-    h1:before {counter-increment: h1c; content: counter(h1c) ". "}
-    h2:before {counter-increment: h2c; content: counter(h1c) "." counter(h2c) ". "}
-    h3:before {counter-increment: h3c; content: counter(h1c) "." counter(h2c) "." counter(h3c) ". "}
-    h4:before {counter-increment: h4c; content: counter(h1c) "." counter(h2c) "." counter(h3c) "." counter(h4c) ". "}
-    h5:before {counter-increment: h5c; content: counter(h1c) "." counter(h2c) "." counter(h3c) "." counter(h4c) "." counter(h5c) ". "}
+    h1:before {content: counter(h1c, upper-roman) ". "; font-size: 0.9em;}
+    h2:before {content: counter(h1c, upper-roman) "." counter(h2c, upper-alpha) ". "; font-size: 0.9em;}
+    h3:before {content: counter(h1c, upper-roman) "." counter(h2c, upper-alpha) "." counter(h3c) ". "; font-size: 0.9em;}
+    h4:before {content: counter(h1c, upper-roman) "." counter(h2c, upper-alpha) "." counter(h3c) "." counter(h4c, lower-alpha) ". "; font-size: 0.9em;}
+    h5:before {content: counter(h1c, upper-roman) "." counter(h2c, upper-alpha) "." counter(h3c) "." counter(h4c, lower-alpha) "." counter(h5c, lower-roman) ". "; font-size: 0.9em;}
     
     h1.nocount:before, 
     h2.nocount:before, 
@@ -22,7 +43,6 @@
         text-transform: inherit;
         font-size: $font-size-h2;
         letter-spacing: inherit;
-        color: inherit;
     }
     table {
         @extend .table;
