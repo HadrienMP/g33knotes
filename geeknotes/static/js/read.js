@@ -16,7 +16,7 @@ $(function() {
         $(this).html($(this).html()
             .replace(/\[\s\]/g, '<i class="fa fa-square-o"></i>')
             .replace(/(.*)\[X\](.*)/g, '<span style="color: grey; font-size: 0.9em">$1<i class="fa fa-check-square-o"></i>$2</span>')
-            .replace(/\[&gt;\]/g, '<i class="fa fa-caret-square-o-right"></i>')); 
+            .replace(/(.*)\[&gt;\](.*)/g, '<span style="color: grey; font-size: 0.9em">$1<i class="fa fa-caret-square-o-right"></i>$2</span>')); 
     });
     /**
      * Creates the arrows

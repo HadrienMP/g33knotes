@@ -9835,6 +9835,10 @@ body.toggled {
   color: red;
   font-size: 1.2em;
 }
+/* line 65, ../sass/_note-view.scss */
+#geeknotes #note del {
+  color: #777777;
+}
 /* line 3, ../sass/_note-edit.scss */
 #geeknotes.note-edit .navbar-top {
   margin: 0;
